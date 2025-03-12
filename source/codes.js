@@ -65,15 +65,17 @@ function updateCart() {
     itemCount.innerText = `(${userCart.length})`;
     cartTotal.innerText = `Total: $${totalPrice.toFixed(2)}`;
 
-    cartItemsContainer.addEventListener("click", function (event) {
-        if (event.target.classList.contains("remove-btn")) {
-            let index = parseInt(event.target.getAttribute("data-index"));
+    // حذف آیتم‌ها
+    const removeButtons = $.querySelectorAll(".remove-btn");
+    removeButtons.forEach(btn => {
+        btn.addEventListener("click", function (event) {
+            let index = parseInt(event.target.getAttribute("data-index")); // ایندکس درست را بگیر
             userCart.splice(index, 1);  // حذف آیتم از آرایه
-            console.log(userCart);
-            updateCart();  // بروزرسانی نمایش
-        }
+
+            updateCart();  // بروزرسانی نمایش سبد خرید
+        });
     });
-    
+
 
     // گرفتن عناصر عکس و متن راهنما
     let fakeImage = $.getElementById("fake-cake__image");
