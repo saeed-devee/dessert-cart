@@ -9,6 +9,7 @@ cartContainer.appendChild(cartItemsContainer);
 
 const itemCount = $.querySelector("#items-counts");
 const cartTotal = $.createElement("h6");
+cartTotal.classList.add("cart-total")
 cartTotal.innerText = "Total: $0.00";
 cartContainer.appendChild(cartTotal);
 
@@ -26,6 +27,16 @@ addToCartButtons.forEach(btn => {
 
 function addToCart(item) {
     userCart.push(item);
+
+    if (userCart.length === 1) {
+        let fakeImage = $.getElementById("fake-cake__image");
+        let cartSubtext = $.getElementById("right-content__subtext");
+        if (fakeImage && cartSubtext) {
+            fakeImage.remove();
+            cartSubtext.remove();
+        };
+    };
+
     updateCart();
 }
 
@@ -35,36 +46,49 @@ function updateCart() {
 
     let totalPrice = 0;
 
-    userCart.forEach((item, index) => {
+    userCart.forEach(item => {
         totalPrice += item.price;
 
         let cartItem = $.createElement("div");
         cartItem.classList.add("cart-item");
         cartItem.innerHTML = `
-            <img src="${item.imgSrc}" width="50">
+            <img src="${item.imgSrc}" alt="${item.name}">
             <span>${item.name}</span>
             <span>$${item.price.toFixed(2)}</span>
-            <button class="remove-btn" data-index="${index}">❌</button>
+            <button class="remove-btn" data-name="${item.name}">❌</button>
         `;
 
         cartItemsContainer.appendChild(cartItem);
     });
 
-    //updating itemsCount and totalPrice
-
-    itemCount.innerHTML = `(${userCart.length})`;
+    // بروزرسانی تعداد و قیمت کل
+    itemCount.innerText = `(${userCart.length})`;
     cartTotal.innerText = `Total: $${totalPrice.toFixed(2)}`;
 
-
-    //deleting items
-
-    const removeBtns = $.querySelectorAll(".remove-btn");
-
-    removeBtns.forEach(btn => {
-        btn.addEventListener('click', function () {
-            let index = parseInt(btn.getAttribute("data-index"));
-            userCart.splice(index , 1);
-            updateCart();
-        });
+    cartItemsContainer.addEventListener("click", function (event) {
+        if (event.target.classList.contains("remove-btn")) {
+            let index = parseInt(event.target.getAttribute("data-index"));
+            userCart.splice(index, 1);  // حذف آیتم از آرایه
+            console.log(userCart);
+            updateCart();  // بروزرسانی نمایش
+        }
     });
-};
+    
+
+    // گرفتن عناصر عکس و متن راهنما
+    let fakeImage = $.getElementById("fake-cake__image");
+    let cartSubtext = $.getElementById("right-content__subtext");
+
+    if (userCart.length === 0) {
+        // نمایش مجدد عکس فیک و متن راهنما
+        if (fakeImage) {
+            fakeImage.style.display = "block";
+            fakeImage.style.filter = "grayscale(0.9)";
+        }
+        if (cartSubtext) cartSubtext.style.display = "block";
+    } else {
+        // مخفی کردن عکس فیک و متن راهنما
+        if (fakeImage) fakeImage.style.display = "none";
+        if (cartSubtext) cartSubtext.style.display = "none";
+    }
+}
