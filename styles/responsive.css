@@ -19,12 +19,12 @@
 
     #right-content__title {
         font-size: 1.3rem;
-        margin-bottom: 1rem;
+        margin: 20px;
+        text-align: center;
     }
 
     #right-content__title::before {
-        top: 3px;
-        height: 20px;
+        display: none;
     }
 
     .items-card {
