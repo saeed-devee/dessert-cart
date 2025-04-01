@@ -15,5 +15,6 @@
 ![full-preview](https://raw.githubusercontent.com/saeed-devee/dessert-cart/main/Capture3.PNG)
 
 ## cart side
-![cart](https://raw.githubusercontent.com/saeed-devee/dessert-cart/main/Capture2.PNG)
-
+<p align="center">
+<img src="https://raw.githubusercontent.com/saeed-devee/dessert-cart/main/Capture2.PNG">
+</p>
