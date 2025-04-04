@@ -29,6 +29,9 @@
     -ms-border-radius: 0.5rem;
     -o-border-radius: 0.5rem;
 }
+.ham-menuBar{
+    display: none;
+}
 #items-counts-title{
     text-align: start;
     margin-bottom: 2rem;
