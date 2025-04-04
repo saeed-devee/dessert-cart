@@ -29,7 +29,7 @@
     -ms-border-radius: 0.5rem;
     -o-border-radius: 0.5rem;
 }
-.ham-menuBar{
+.cart-icon{
     display: none;
 }
 #items-counts-title{
@@ -202,6 +202,10 @@
     -moz-border-radius: 7px;
     -ms-border-radius: 7px;
     -o-border-radius: 7px;
+    -webkit-transition: transform 0.2s ease-in-out;
+    -moz-transition: transform 0.2s ease-in-out;
+    -ms-transition: transform 0.2s ease-in-out;
+    -o-transition: transform 0.2s ease-in-out;
 }
 
 .cart-item:hover{

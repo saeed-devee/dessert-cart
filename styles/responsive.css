@@ -19,8 +19,10 @@
         -o-transform: translateX(30%);
     }
 
-    .ham-menuBar {
+    .cart-icon {
         display: flex;
+        justify-content: center;
+        align-items: center;
         flex-direction: column;
         position: absolute;
         top: 1.7rem;
@@ -28,13 +30,31 @@
         cursor: pointer;
     }
 
-    .ham-menuBar .ham-menuBar__line {
-        display: block;
-        width: 100%;
-        height: 4px;
-        font-size: 1.5em;
-    }
+    .cart-shopping__icon {
+        font-size: 1.2rem;
+        margin-top: 0.5rem;
+        transition: all 200ms ease;
+        -webkit-transition: all 200ms ease;
+        -moz-transition: all 200ms ease;
+        -ms-transition: all 200ms ease;
+        -o-transition: all 200ms ease;
+}
 
+    .cart-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        color: #fff;
+        background-color: #FF2400;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 2px 6px;
+        border-radius: 50%;
+        display: none;
+    }
+    .cart-shopping__icon:hover{
+        color: #23fa00;
+    }
     #right-content__title {
         font-size: 1.3rem;
         margin: 2rem;

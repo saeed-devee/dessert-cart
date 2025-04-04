@@ -3,6 +3,20 @@ let userCart = [];
 
 const addToCartButtons = $.querySelectorAll(".addToCart-btn");
 const cartContainer = $.querySelector(".right-content");
+const cartIcon = $.querySelector(".cart-icon");
+const cartBadge = $.querySelector("#cart-badge");
+const cartModalContent = $.querySelector("#cart-modal-content")
+
+function updateBadge() {
+    if(userCart.length > 0){
+        cartBadge.innerText = userCart.length;
+        cartBadge.style.display = "block";
+    }
+    else{
+        cartBadge.style.display = "none"
+    }
+}
+
 const cartItemsContainer = $.createElement("div");
 cartItemsContainer.classList.add("cart-items");
 cartContainer.appendChild(cartItemsContainer);
@@ -38,6 +52,7 @@ function addToCart(item) {
     };
 
     updateCart();
+    updateBadge();
 }
 
 function updateCart() {
@@ -93,4 +108,29 @@ function updateCart() {
         if (fakeImage) fakeImage.style.display = "none";
         if (cartSubtext) cartSubtext.style.display = "none";
     }
+}
+
+cartIcon.addEventListener("click" , function () {
+    updateModalCart()
+    let cartModal = new bootstrap.Modal($.getElementById("cartModal"));
+    cartModal.show();
+})
+
+function updateModalCart() {
+    cartModalContent.innerHTML = "";
+
+    if(userCart.length === 0){
+        cartModalContent.innerHTML = "<p>Your cart is empty.</p>"
+        return;
+    }
+    userCart.forEach(item => {
+        let cartItem = $.createElement("div");
+        cartItem.classList.add("cart-item");
+        cartItem.innerHTML = `
+        <img src="${item.imgSrc}" alt="${item.name}" style="width: 40px;" height:"40px">
+            <span>${item.name}</span>
+            <span>$${item.price.toFixed(2)}</span>
+        `;
+        cartModalContent.appendChild(cartItem);
+    });
 }
