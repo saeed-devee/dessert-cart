@@ -144,7 +144,7 @@
 }
 
 /* Tablet size */
-@media screen and (min-width: 481px) and (max-width: 768px){
+@media screen and (min-width: 481px) and (max-width: 1000px){
   .main-contents {
     margin: 2rem;
   }
@@ -166,7 +166,7 @@
     }
 }
 
-@media screen and (min-width: 481px) and (max-width: 768px) {
+@media screen and (min-width: 481px) and (max-width: 1000px) {
     body {
         font-size: 14px;
     }
